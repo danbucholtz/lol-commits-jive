@@ -73,4 +73,4 @@ if selected_file_path is not None:
 	# delete the image so it is not re-used
 	os.remove(selected_file_path)
 else:
-	print("Could not find image to use.  Get coding!")
+	print("Could not find image to use.  Get coding!") 
