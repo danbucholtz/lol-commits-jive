@@ -16,8 +16,7 @@ jive_base_url = "http://jive-url"
 # use the rest API to get the content ID.  NOTE:  Not the object ID - make sure you are using the ContentID
 jive_thread_content_id = "72687"
 
-earliest_date = None
-selected_file_path = None
+file_list = []
 
 for root, subdirs, files in os.walk(walk_dir):
 
@@ -32,31 +31,24 @@ for root, subdirs, files in os.walk(walk_dir):
 
         		file_path = os.path.join(root, filename)
 
-        		filetime = time.ctime(os.path.getmtime(file_path))
-
-        		filedate = datetime.datetime.strptime(filetime, "%a %b %d %H:%M:%S %Y")
-        		today = datetime.datetime.now()
-
-        		# make sure it's from today
-
-        		if filedate.year == today.year and filedate.month == today.month and filedate.day == today.day:
-
-        			# it is from today, so now check and make sure it's the earliest one...
-
-        			if earliest_date is None or earliest_date < filedate:
-        				earliest_date = filedate
-        				selected_file_path = file_path
+        		file_list.append(file_path);
 
 # we may have a selected file now... if we do, go ahead and process it
 
-if selected_file_path is not None:
+num_files = len(file_list);
 
-	print("Using the following file: " + selected_file_path)
+if num_files > 0:
+
+	index = random.randint(0, num_files - 1)
+
+	random_file = file_list[index]
+
+	print("Using the following file: " + random_file)
 	# post the image to jive /images api
 
 	images_endpoint = jive_base_url + "/api/core/v3/images"
 
-	files = {'file': ('lol.jpg', open(selected_file_path, 'rb'), 'image/jpg', {'Expires': '0'})}
+	files = {'file': ('lol.jpg', open(random_file, 'rb'), 'image/jpg', {'Expires': '0'})}
 	r = requests.post(images_endpoint, files=files, auth=(jive_username, jive_password))
 	response_data = r.json();
 
@@ -71,6 +63,6 @@ if selected_file_path is not None:
 	response_data = r.json();
 	
 	# delete the image so it is not re-used
-	os.remove(selected_file_path)
+	os.remove(random_file)
 else:
 	print("Could not find image to use.  Get coding!") 
