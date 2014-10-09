@@ -8,7 +8,7 @@
    <key>ProgramArguments</key>
    <array>
         <string>python</string>
-        <string>/Users/dan/scripts/lolcommits.py</string>
+        <string>PATH_TO_SCRIPT</string>
    </array>
    <key>StartInterval</key>
    <integer>900</integer>
