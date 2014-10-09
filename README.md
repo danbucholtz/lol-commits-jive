@@ -1,8 +1,6 @@
 lol-commits-jive
 ================
 
-This script should be set-up to run once-a-day via a cron job or however you'd like.  It will choose a random LOL commit image from the current day and upload it to a Jive document/discussion/whatever as a comment.  LOL!
-
 This small python application is designed to be post a random lol commit to a jive community.  It uses the Mac launchd system to execute the python script every 15 minutes.  These values are all configurable.
 
 To get started, run the following commands in order (this may not be necessary in your dev set-up.  Just make sure pip and requests are installed and working)
