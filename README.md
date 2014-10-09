@@ -1,9 +1,9 @@
 lol-commits-jive
 ================
 
-Post your lol commits to Jive
+This script should be set-up to run once-a-day.  It will choose a random LOL commit image and upload it to a Jive document/discussion/whatever as a comment.  LOL!
 
-Run the following commands in order to get started.
+Run the following commands in order:
 
 1.  brew install python
 2.  pip install requests
