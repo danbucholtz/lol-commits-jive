@@ -8,14 +8,16 @@ import requests
 
 walk_dir = ".lolcommits"
 
-jive_username = "dan.bucholtz@7summitsagency.com"
-jive_password = "asdf1234"
+jive_username = "jive-username"
+jive_password = "jive-password-plaintext"
 
-jive_base_url = "https://7summitsagency-hive.jiveon.com/"
+jive_base_url = "http://jive-url"
 
+# use the rest API to get the content ID.  NOTE:  Not the object ID - make sure you are using the ContentID
 jive_thread_content_id = "72687"
 
-list_of_files = []
+earliest_date = None
+selected_file_path = None
 
 for root, subdirs, files in os.walk(walk_dir):
 
@@ -35,25 +37,26 @@ for root, subdirs, files in os.walk(walk_dir):
         		filedate = datetime.datetime.strptime(filetime, "%a %b %d %H:%M:%S %Y")
         		today = datetime.datetime.now()
 
-        		#if filedate.year == today.year and filedate.month == today.month and filedate.day == today.day:
+        		# make sure it's from today
 
-        		list_of_files.append(file_path)
+        		if filedate.year == today.year and filedate.month == today.month and filedate.day == today.day:
 
-# we now have a list of .jpg files that were modified today.  Choose a random one.
+        			# it is from today, so now check and make sure it's the earliest one...
 
-num_files = len(list_of_files)
+        			if earliest_date is None or earliest_date < filedate:
+        				earliest_date = filedate
+        				selected_file_path = file_path
 
-if num_files > 0:
+# we may have a selected file now... if we do, go ahead and process it
 
-	index = random.randint(0, num_files - 1)
+if selected_file_path is not None:
 
-	random_file = list_of_files[index]
-
+	print("Using the following file: " + selected_file_path)
 	# post the image to jive /images api
 
 	images_endpoint = jive_base_url + "/api/core/v3/images"
 
-	files = {'file': ('lol.jpg', open(random_file, 'rb'), 'image/jpg', {'Expires': '0'})}
+	files = {'file': ('lol.jpg', open(selected_file_path, 'rb'), 'image/jpg', {'Expires': '0'})}
 	r = requests.post(images_endpoint, files=files, auth=(jive_username, jive_password))
 	response_data = r.json();
 
@@ -66,4 +69,8 @@ if num_files > 0:
 
 	response = requests.post(jive_base_url + "/api/core/v3/comments", data=json.dumps(payload), headers=headers, auth=(jive_username, jive_password))
 	response_data = r.json();
-	print(response_data)
+	
+	# delete the image so it is not re-used
+	os.remove(selected_file_path)
+else:
+	print("Could not find image to use.  Get coding!")
