@@ -16,7 +16,7 @@ After that, clone the git project.  Place the cloned project somewhere where it 
 	
 	Find PATH_TO_SCRIPT in the file and replace it with the full path to the python script.
 
-2.  nano lolcommits.py.  Replace JIVE_USERNAME, JIVE_PASSWORD_PLAINTEXT, and FULL_JIVE_URL_INCLUDE_HTTP with the proper values.
+2.  nano lolcommits.py.  Replace USER_DIRECTORY, JIVE_USERNAME, JIVE_PASSWORD_PLAINTEXT, and FULL_JIVE_URL_INCLUDE_HTTP with the proper values.
 
 3.  sudo mv ./com.sevensummits.lolcommits.plist /Library/LaunchDaemons/com.sevensummits.lolcommits.plist 
 

@@ -6,7 +6,7 @@ import sys
 import random
 import requests
 
-walk_dir = ".lolcommits"
+walk_dir = "/Users/USER_DIRECTORY/.lolcommits"
 
 jive_username = "JIVE_USERNAME"
 jive_password = "JIVE_PASSWORD_PLAINTEXT"
