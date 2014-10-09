@@ -9,3 +9,10 @@ Run the following commands in order (this may not be necessary in your dev set-u
 2.  pip install requests
 3.  sudo rm /usr/bin/python
 3.  sudo ln -s /usr/local/bin/python /usr/bin/python
+
+Place the python script somewhere on your computer.  Update the com.lolcommits.plist file to reflect the location of the script.
+
+Then, execute the following commands
+
+1.  sudo mv /Library/LaunchDaemons/com.sevensummits.lolcommits.plist ./com.sevensummits.lolcommits.plist
+2.  sudo chown root com.sevensummits.lolcommits.plist

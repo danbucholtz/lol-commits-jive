@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+   <key>Label</key>
+   <string>com.sevensummits.lolcommits</string>
+   <key>ProgramArguments</key>
+   <array>
+        <string>python</string>
+        <string>/Users/dan/scripts/lolcommits.py</string>
+   </array>
+   <key>StartInterval</key>
+   <integer>900</integer>
+   <key>StandardOutPath</key>
+    <string>/var/log/lolcommits.log</string>
+    <key>StandardErrorPath</key>
+    <string>/var/log/lolcommits.log</string>
+    <key>Debug</key>
+    <true/>
+</dict>
+</plist>
