@@ -8,10 +8,10 @@ import requests
 
 walk_dir = ".lolcommits"
 
-jive_username = "jive-username"
-jive_password = "jive-password-plaintext"
+jive_username = "JIVE_USERNAME"
+jive_password = "JIVE_PASSWORD_PLAINTEXT"
 
-jive_base_url = "http://jive-url"
+jive_base_url = "FULL_JIVE_URL_INCLUDE_HTTP"
 
 # use the rest API to get the content ID.  NOTE:  Not the object ID - make sure you are using the ContentID
 jive_thread_content_id = "72687"
